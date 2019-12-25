@@ -1,0 +1,81 @@
+/*遮罩层*/
+.auth {
+	z-index: 10001;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+	transform-origin: 0 0;
+    transform: scale(0) translate(-50%, -50%);
+    width: 100%;
+	transition: all 0.5s;
+}
+
+.kuang {
+    background: #fff;
+    width: 550rpx;
+    border-radius: 14rpx;
+    margin: 0 auto;
+    box-shadow: 0 0 50rpx #474646;
+}
+
+.kuang .header-title {
+    color: #333;
+    font-size: 30rpx;
+    text-align: center;
+    padding: 25rpx 25rpx 10rpx 25rpx;
+    border-radius: 14rpx 14rpx 0 0;
+    font-weight: 600;
+}
+
+.kuang .header-title-s {
+    color: #999;
+    font-size: 28rpx;
+    text-align: center;
+}
+
+.kuang .bottom {
+    border-radius: 0 0 14rpx 14rpx;
+    overflow: hidden;
+}
+
+.kuang .bottom .content {
+    margin: 42rpx auto;
+    width: 506rpx;
+    height: 389rpx;
+}
+
+.kuang .bottom .content image {
+    width: 100%;
+    height: 100%;
+}
+
+.kuang .bottom .btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.kuang .bottom button {
+    flex: 1;
+}
+
+.kuang .bottom .loginBtn, .kuang .bottom .close {
+    font-size: 32rpx;
+    margin: 0 26rpx 36rpx 26rpx;
+    border-radius: 8rpx;
+}
+
+.kuang .bottom .loginBtn:after, .kuang .bottom .close:after {
+    border: none;
+}
+
+.kuang .bottom .close {
+    color: #f90;
+    border: 2rpx solid #f90;
+    background: #fff;
+}
+
+.kuang .bottom .loginBtn {
+    color: #fff;
+    background: #f90;
+    border: 2rpx solid transparent;
+}

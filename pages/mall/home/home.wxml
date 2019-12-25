@@ -1,0 +1,55 @@
+<cu-custom bgColor="bg-white">
+    <view slot="content">全部商品</view>
+</cu-custom>
+<view class="cu-bar bg-white search" style="border-bottom: 1rpx solid #f1f1f1;">
+    <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input type="text" placeholder="搜索商品" confirm-type="search" bindinput="bindKeyInput" bindconfirm="search"></input>
+    </view>
+</view>
+
+<view class="VerticalBox bg-white">
+    <scroll-view class="VerticalNav nav" scroll-y style="height:calc(100vh - 84rpx - 84rpx - {{CustomBar}}px)">
+        <view class="cu-item text-sm text-center {{index==TabCur?'text-orange cur':''}}" wx:for="{{class_list}}" wx:key bindtap='tabSelect' data-id="{{index}}" data-class_id="{{item.class_id}}">
+            {{item.class_name}}
+        </view>
+    </scroll-view>
+    <scroll-view class="VerticalMain flex-sub" scroll-y style="height:calc(100vh - 84rpx - 84rpx - {{CustomBar}}px)" lower-threshold='50' bindscrolltolower='lower'>
+        <!-- 没有商品 -->
+        <view wx:if='{{goods.length == 0 && loading == true}}'>
+            <view class='no-goods-box' style="height: calc(100vh - 84rpx - 84rpx - {{CustomBar}}px);overflow: hidden;position: relative;">
+                <view class='no-goods-icon'>
+                    <image src='../../../images/no_goods.png'></image>
+                </view>
+                <view class='text-center text-sm text-gray'>很抱歉，没有找到相关信息</view>
+            </view>
+        </view>
+
+        <view class="cards bg-gray margin-left-sm" wx:if='{{goods.length != 0 && loading == true}}'>
+            <view class="cu-card case padding-left-sm padding-right-sm padding-bottom">
+                <block wx:for='{{goods}}' wx:key id="main-{{index}}">
+                    <view class="cu-item shadow item" bindtap="toDetail" data-goods_id="{{item.goods_id}}">
+                        <view class="image">
+                            <image src="{{item.icon !='' ? item.icon:'../../../images/load.png'}}" lazy-load='true'></image>
+                        </view>
+                        <view class="cu-list menu-avatar">
+                            <view class="cu-item">
+                                <view class="content">
+                                    <view class="text-black goods-name text-cut">{{item.goods_name}}</view>
+                                    <!-- <view class="text-gray text-xs goods-price" style="height: 30rpx;line-height: 30rpx;">市场价：<text class="text-price">{{item.market_price}}</text></view> -->
+                                    <view class="text-orange flex flex-row align-center justify-between" style="height: 46rpx;">
+                                        <text class="text-price text-sm">{{item.price}}</text>
+                                        <button class="cu-btn text-xs round line-orange" style="height: 32rpx;padding: 0 16rpx;">购买</button>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+			<view class="cu-load {{!isLoad?'loading':'over'}}"></view>
+        </view>
+    </scroll-view>
+</view>
+
+<view class='cu-tabbar-height'></view>

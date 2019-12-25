@@ -1,0 +1,85 @@
+<scroll-view scroll-y style="height: calc(100vh - 84rpx);">
+    <view class="ucenter-bg flex flex-direction">
+        <view class="box flex flex-direction">
+            <!-- 已登录状态显示 -->
+            <view wx:if='{{Authorization}}'>
+                <view class="name text-white text-xl">{{nickname}}</view>
+                <view class="msg flex flex-row align-center">
+                    <image src="{{icon}}" class="avater" mode="aspectFill"></image>
+                    <view class="text-white text-df">
+                        <view class="margin-bottom-sm">
+                            <image src="../../../images/my/experience.png" class="experience"></image>经验：{{experience}}</view>
+                        <view>
+                            <image src="../../../images/my/balance.png" class="balance"></image>余额：{{balance}}
+                            <text class="cuIcon-roundright text-df text-white margin-left-sm" bindtap="smallMoney"></text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!-- 未登录状态显示 -->
+            <view wx:else>
+                <view class="top_content flex flex-direction align-center justify-center text-white text-lg">
+                    <view class="ui-view">
+                        <view class="ui-image-container">
+                            <image class="ui-image none" src="../../../images/my/noLogin.png"></image>
+                        </view>
+                    </view>
+                    <view class="login_name margin-top-sm" bindtap="login">
+                        点击登录
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="waveWrapper waveAnimation">
+            <view class="waveWrapperInner bgTop" style="">
+                <view class="wave waveTop" style="">
+                    <image mode="aspectFill" src="../../../images/my/flow.png" class="wh100" style=""></image>
+                </view>
+            </view>
+            <view class="waveWrapperInner bgMiddle" style="">
+                <view class="wave waveMiddle" style="">
+                    <image mode="aspectFill" src="../../../images/my/flow.png" class="wh100" style=""></image>
+                </view>
+            </view>
+        </view>
+    </view>
+	<view class="cu-bar bg-white solid-bottom">
+		<view class="action">
+			我的订单
+		</view>
+		<view class="action text-gray" bindtap='toChild' data-url="/orderHandling/orderHandling" data-id="0" data-title="全部">
+			<text style="font-size: 28rpx;">查看全部订单</text>
+			<text class="cuIcon-right" style="font-size: 28rpx;"></text>
+		</view>
+	</view>
+	<view class="cu-list grid col-{{orderCell.length}} no-border margin-bottom-sm" style="padding: 10rpx 10rpx;">
+		<view class="cu-item" wx:for="{{orderCell}}" wx:key wx:if="{{index<orderCell.length*2}}" bindtap='toChild' data-url="{{item.url}}" data-id="{{item.id}}" data-title="{{item.title}}">
+			<view>
+				<image src="{{item.img}}" style="width: 50rpx;height: 50rpx;"></image>
+			</view>
+			<text>{{item.title}}</text>
+		</view>
+	</view>
+    <block wx:for="{{list}}" wx:key>
+        <view class='order-cell-group margin-bottom-sm'>
+            <van-cell-group>
+                <block wx:for="{{item}}" wx:key>
+                    <van-cell is-link bind:click='toChild' data-url="{{item.url}}" data-id="{{item.id}}" data-title="{{item.title}}">
+                        <view slot="icon" class="mgl">
+                            <image src="{{item.img}}" style="width: {{item.width}}rpx;height: {{item.height}}rpx;"></image>
+                        </view>
+                        <view slot="title">
+                            <view class="van-cell-text">{{item.title}}</view>
+                        </view>
+                    </van-cell>
+                </block>
+            </van-cell-group>
+        </view>
+    </block>
+    <button class="margin-left-lg margin-right-lg margin-bottom-sm cu-btn bg-orange lg block" wx:if='{{Authorization}}' bindtap="outLogin">退出账号</button>
+</scroll-view>
+
+<!-- 授权登录 -->
+<auth showOverlay='{{showAuth}}' showLogin='{{showAuth}}'></auth>
+
+<view class="cu-tabbar-height"></view>

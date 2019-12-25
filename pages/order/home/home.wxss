@@ -1,0 +1,162 @@
+/*************************水波纹**************************/
+
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+	top: 0;
+    margin: auto;
+    height: 318rpx;
+    background: linear-gradient(to bottom right, #7a4a21 10%, #e99529 70%);
+}
+
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 40%;
+    bottom: -1px;
+}
+
+.bgTop {
+    z-index: 15;
+    opacity: 0.1;
+}
+
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.2;
+}
+
+.bgBottom {
+    z-index: 5;
+}
+
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+
+.wave .wh100 {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.waveTop {
+    background-size: 150% 60px;
+}
+
+.waveAnimation .waveTop {
+    animation: move_wave 10s linear infinite;
+    animation-delay: 3s;
+    animation-direction: alternate;
+}
+
+.waveMiddle {
+    background-size: 150% 70px;
+}
+
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+    animation-direction: alternate;
+}
+
+.waveBottom {
+    background-size: 100% 20px;
+}
+
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
+
+@-webkit-keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1);
+    }
+
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55);
+    }
+
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1);
+    }
+}
+
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1);
+    }
+
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55);
+    }
+
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1);
+    }
+}
+
+.ucenter-bg {
+    height: 318rpx;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    font-weight: 300;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.ucenter-bg .box {
+    z-index: 20;
+}
+
+.ucenter-bg .box .msg {
+    margin: 0 0 0 122rpx;
+}
+
+.ucenter-bg .box .name {
+    margin: 46rpx 0 30rpx 80rpx;
+}
+
+.ucenter-bg .msg .balance, .ucenter-bg .msg .experience {
+    width: 36rpx;
+    height: 36rpx;
+    vertical-align: middle;
+    margin-right: 14rpx;
+}
+
+.ucenter-bg .msg .avater {
+    width: 152rpx;
+    height: 152rpx;
+    border-radius: 100%;
+    margin-right: 42rpx;
+	border: 4rpx solid #E67921;
+}
+
+.ucenter-bg .box .top_content {
+    z-index: 20;
+	margin-top: 78rpx;
+}
+
+.top_content .ui-view .ui-image {
+    width: 128rpx;
+    height: 128rpx;
+    border-radius: 100%;
+    vertical-align: middle;
+}
+
+.mgl {
+	width: 44rpx;
+    margin-left: 50rpx;
+    margin-right: 24rpx;
+}
+
+.mgl image {
+	vertical-align: middle;
+}

@@ -1,0 +1,16 @@
+<van-overlay show="{{ showOverlay }}" custom-style='z-index: 10000;' bind:click="closePup" />
+<view class='auth' style="{{ showLogin?'transform: scale(1) translate(-50%, -50%);':'' }}">
+    <view class='kuang'>
+        <view class='header-title'>您还未登录</view>
+        <view class='header-title-s'>请登录后进行操作</view>
+        <view class='bottom'>
+            <view class='content'>
+                <image src="../../images/my/noLogin2.png"></image>
+            </view>
+            <view class='btns'>
+                <button class='close' hover-class="none" bindtap="closePup">取消</button>
+                <button class='loginBtn' hover-class="none" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">登录</button>
+            </view>
+        </view>
+    </view>
+</view>

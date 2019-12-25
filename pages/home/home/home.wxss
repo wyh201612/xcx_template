@@ -1,0 +1,330 @@
+/* 悬浮框--------- */
+
+.suspension {
+	z-index: 9;
+	position: fixed;
+	right: 0;
+	bottom: 300rpx;
+	width: 230rpx;
+	height: 260rpx;
+}
+
+/* 轮播图--------- */
+
+.swipercontent {
+    position: relative;
+}
+
+swiper {
+    width: 100%;
+    height: 360rpx;
+}
+
+swiper image {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.swipercontent .dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20rpx;
+    display: flex;
+    justify-content: center;
+}
+
+.swipercontent .dot {
+    margin: 0 8rpx;
+    width: 10rpx;
+    height: 10rpx;
+    background: #fff;
+    opacity: 0.4;
+    border-radius: 20rpx;
+    transition: all 0.6s;
+}
+
+.swipercontent .dot.active {
+    opacity: 1;
+    width: 20rpx;
+}
+
+/* 轮播图---------end */
+
+.skeleton-avatar {
+    display: inline-block;
+    vertical-align: top;
+    background: #f2f2f2;
+    width: 80rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.skeleton-avatar--active {
+    background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+    animation: loading 1.4s ease infinite;
+    background-size: 400% 100%;
+}
+
+.skeleton-avatar--circle {
+    border-radius: 50%;
+}
+
+.skeleton-images {
+    display: inline-block;
+    vertical-align: top;
+    background: #f2f2f2;
+    width: 100%;
+    height: 350rpx;
+}
+
+.skeleton-images-df {
+    display: inline-block;
+    vertical-align: top;
+    background: #f2f2f2;
+    width: 100%;
+    height: 140rpx;
+}
+
+.grid.col-3>view {
+    width: 32.33%;
+}
+
+.grid>view:last-child {
+    margin: 0;
+}
+
+.skeleton-images--active {
+    background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+    animation: loading 1.4s ease infinite;
+    background-size: 400% 100%;
+}
+
+.skeleton-paragraph {
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-paragraph--active .skeleton-paragraph__row {
+    background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+    animation: loading 1.4s ease infinite;
+    background-size: 400% 100%;
+}
+
+.paragraph .skeleton-paragraph__row {
+    margin: 0 auto;
+}
+
+.skeleton-paragraph__row:nth-child(4n+1) {
+    width: 80%;
+}
+
+.skeleton-paragraph__row:first-child {
+    margin-top: 0;
+}
+
+.skeleton-paragraph__row {
+    height: 32rpx;
+    background: #f2f2f2;
+    width: 100%;
+    margin-top: 32rpx;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+/* 骨架-----------------end */
+
+.search .van-searc {
+    padding: 32rpx 128rpx 0 128rpx;
+}
+
+.van-search__content {
+    border-radius: 200rpx;
+}
+
+.classs-swiper-box {
+    max-height: 340rpx;
+    padding: 10rpx 20rpx;
+    z-index: 9;
+    position: relative;
+    background: #fff;
+}
+
+.classs-swiper-box .classs-swiper {
+    height: 100%;
+}
+
+.classs-swiper-box .classs-swiper .recordItem {
+    background-color: white;
+    margin: 15rpx 0;
+    width: 20%;
+    float: left;
+    overflow: hidden;
+}
+
+.classs-swiper-box .classs-swiper .recordItem .name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 22rpx;
+}
+
+.classs-swiper-box .classs-swiper .recordItem .name .class_logo {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 100%;
+}
+
+.classs-swiper-box .classs-swiper .recordItem .name .class_name {
+    margin: 10rpx 0;
+    padding: 5rpx 10rpx;
+}
+
+.indicator {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    padding: 10rpx 0;
+    height: 6rpx;
+    background: #fff;
+}
+
+.indicator .indicator-dots {
+    display: inline-block;
+    width: 45rpx;
+    height: 6rpx;
+    background: #f0f0f0;
+    margin: 0 10rpx;
+    transition: all 0.5s;
+    border-radius: 40rpx;
+}
+
+.indicator .indicator-dots.active {
+    background: #f90;
+}
+
+.adNum {
+    overflow: hidden;
+    background: #fff;
+    padding: 0 8rpx;
+}
+
+.adNum image {
+    width: 238rpx;
+    height: 350rpx;
+    float: left;
+    margin: 10rpx 6rpx;
+}
+
+.adNum image:nth-child(2n+1) {
+    margin-right: 0;
+}
+
+.adNum image:nth-child(1) {
+    margin-bottom: 0;
+}
+
+.adNum image:nth-child(2) {
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
+.otherad {
+    height: 154rpx;
+    overflow: hidden;
+    padding: 0 14rpx;
+}
+
+.otherad image {
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom;
+}
+
+.custom-arrow {
+    vertical-align: middle;
+}
+
+.custom-arrow1 {
+    margin-right: -20rpx;
+}
+
+.cards {
+    padding: 0 18rpx 18rpx 18rpx;
+}
+
+.item {
+    float: left;
+    margin-top: 18rpx !important;
+}
+
+.item:nth-child(2n+1) {
+    width: calc(50% - 9rpx);
+    margin-left: 0 !important;
+    margin-right: 9rpx !important;
+    /* margin-top: 0 !important; */
+    margin-bottom: 0 !important;
+}
+
+.item:nth-child(2n) {
+    width: calc(50% - 9rpx);
+    margin-left: 9rpx !important;
+    margin-right: 0 !important;
+    /* margin-top: 0 !important; */
+    margin-bottom: 0 !important;
+}
+
+.cu-card.case .image {
+    width: 100%;
+    height: 350rpx;
+}
+
+.cu-card.case .image image {
+    height: 100%;
+}
+
+.cu-list.menu-avatar>.cu-item {
+    height: auto !important;
+    justify-content: flex-start;
+    margin-left: 16rpx;
+}
+
+.cu-list.menu-avatar>.cu-item .content {
+    position: relative !important;
+    left: 0 !important;
+    width: 100% !important;
+}
+
+.cu-list.menu-avatar>.cu-item .content .car {
+    width: 42rpx;
+    height: 44rpx;
+}
+
+.cu-bar {
+    min-height: 90rpx;
+}
+
+.cu-bar .titles {
+    display: inline-block;
+    width: 8rpx;
+    height: 40rpx;
+    border-radius: 44rpx;
+    margin-left: -10rpx;
+    margin-right: 20rpx;
+}
+
+.goods-name {
+    margin: 14rpx 0 8rpx 0;
+}

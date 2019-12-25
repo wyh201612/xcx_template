@@ -1,0 +1,83 @@
+/* vant-ui 搜索框样式 */
+
+.van-search {
+    padding: 32rpx 128rpx 20rpx 128rpx !important;
+}
+
+.van-search__content {
+    background-color: #fff !important;
+    box-shadow: 0 8rpx 12rpx rgba(0, 0, 0, 0.2);
+}
+
+.order-cell-group .van-cell:after {
+    left: 144rpx !important;
+}
+
+/* 添加地址 */
+
+.addAddressBtn .van-cell {
+    line-height: 102rpx !important;
+}
+
+.addAddressBtn .van-cell .van-cell__right-icon-wrap {
+    height: auto !important;
+    margin-left: 40rpx !important;
+}
+
+.addAddressBtn .van-cell__title {
+    font-size: 30rpx;
+}
+
+.addAddressBtn .van-icon-add-o {
+    font-size: 36rpx;
+    vertical-align: middle;
+    margin-right: 26rpx;
+}
+
+.addressList .van-cell .van-cell__title {
+    flex: initial !important;
+}
+
+.addAddressBtn .van-cell:after, .addressList .van-cell:after {
+    left: 0 !important;
+}
+
+/* 购物车 */
+
+.car-goods .van-cell:after {
+    border-bottom: 0 !important;
+}
+
+.car-goods .van-cell {
+    border-radius: 10rpx;
+}
+
+/* 商品详情 */
+
+.offlineStore .van-cell:after {
+    border-bottom: 0 !important;
+}
+
+.goods-action .van-button {
+    height: 100rpx !important;
+}
+
+.details .van-cell:after {
+    left: 0 !important;
+}
+
+/* 下单 */
+
+.placeOrder .van-cell .van-cell__right-icon-wrap {
+    height: auto !important;
+}
+
+.placeOrder .van-cell:after {
+    border-bottom: 0 !important;
+}
+
+/* 全部商品 */
+
+.goodsListAll .van-sticky .van-sticky-wrap {
+    width: 100%;
+}

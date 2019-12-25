@@ -1,0 +1,105 @@
+<cu-custom bgColor="bg-white">
+    <view slot="content">购物车</view>
+</cu-custom>
+
+<!-- 没有商品 -->
+<view wx:if='{{shopcar_list.length == 0 && loading == true}}'>
+    <view class='no-goods-box' style="height: calc(100vh - 84rpx - {{CustomBar}}px);overflow: hidden;position: relative;">
+        <view class='no-goods-icon'>
+            <image src='../../../images/car/no-goods.png'></image>
+        </view>
+        <view class='text-center text-sm text-gray'>您的购物车还是空的，赶紧行动吧！</view>
+        <button hover-class='none' class="look cu-btn block line-orange" bindtap='toIndex'>去看看</button>
+        <view class='footers'>
+            <view class='mumu-icon'>
+                <image src='../../../images/mumu-icon.png'></image>
+            </view>
+            <view class='text-center text-xs text-darkGray'>木木福利提供技术支持</view>
+        </view>
+    </view>
+</view>
+<!-- 有商品 -->
+<view wx:if='{{shopcar_list.length != 0 && loading == true}}'>
+    <view class='car-goods-header flex align-center justify-between bg-white shadow'>
+        <view class='car-goods-header-left flex align-center'>
+            <image class='car-goods-home' src='../../../images/car/car-home.png'></image>
+            <text>木木商城</text>
+        </view>
+        <view class='car-goods-header-right'>
+            <text wx:if='{{!isEdit}}' bindtap='edit'>编缉</text>
+            <text wx:if='{{isEdit}}' bindtap='edit'>完成</text>
+        </view>
+    </view>
+    <scroll-view scroll-y style='height: calc(100vh - 84rpx - {{CustomBar}}px - 86rpx - 86rpx);'>
+        <view class='car-goods-box'>
+            <view class='car-goods'>
+                <block wx:for='{{shopcar_list}}' wx:key wx:for-item="item1" wx:for-index="index1">
+                    <view class='goods-item radius'>
+                        <van-cell use-label-slot custom-class='store-cell' value-class="value-class margin-xs">
+                            <view slot='icon' class='flex align-center'>
+                                <van-checkbox custom-class='cus-iconRadio' icon-class='iconRadio' name="{{ item1.merchants_id }}" icon-size='18px' data-id="{{ item1.merchants_id }}" data-index="{{ index1 }}" data-ischecked="{{ item1.checked }}" class="checkboxes-{{ item1.merchants_id }}"
+                                    checked-color="#f08300" value="{{item1.checked}}" catch:tap="bindAllItemCheckbox" />
+                            </view>
+                            <view slot='label' class='goods-list'>
+                                <view class='margin-left flex flex-row align-center justify-between'>
+                                    <text class="text-black text-xl">{{item1.merchants_name}}</text>
+                                </view>
+                            </view>
+                        </van-cell>
+                        <block wx:for='{{item1.value}}' wx:key wx:for-item="item2" wx:for-index="index2">
+                            <van-cell use-label-slot custom-class='store2-cell' value-class="value-class margin-xs">
+                                <view slot='icon' class='flex align-center'>
+                                    <van-checkbox custom-class='cus-iconRadio' icon-class='iconRadio' name="{{ item2.car_id }}" icon-size='18px' data-id="{{ item2.car_id }}" data-merchants_id="{{ item1.merchants_id }}" data-index1="{{ index1 }}" data-index="{{ index2 }}" data-ischecked="{{ item2.checked }}" class="checkboxes-{{ item2.car_id }}"
+                                        checked-color="#f08300" value="{{item2.checked}}" catch:tap="bindCheckbox" />
+                                </view>
+                                <view slot='label' class='goods-list'>
+                                    <view class='flex'>
+                                        <view class='goods-left' data-goods_id="{{ item2.goods_id }}" bindtap="toDetail">
+                                            <image src='{{item2.icon}}' mode="scaleToFill"></image>
+                                        </view>
+                                        <view class='goods-right flex-sub'>
+                                            <text class='goods-name block text-lg text-darkGray text-cut' wx:if='{{item2.goods_name}}'>{{item2.goods_name}}</text>
+                                            <text class='goods-explain block text-df text-gray' wx:if='{{item2.sku_name}}'>{{item2.sku_name}}</text>
+                                            <view class='flex align-center justify-between'>
+                                                <text class='goods-price text-price text-orange text-xl'>{{item2.price}}</text>
+                                                <view class='stepper flex align-center' wx:if='{{!isEdit}}'>
+													<van-stepper value="{{item2.num}}" integer data-car_id="{{item2.car_id}}" data-index1="{{ index1 }}" data-index2="{{ index2 }}" bind:minus='bindMinus' bind:plus='bindPlus' bind:blur='bindNumberInput' />
+                                                </view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </van-cell>
+                        </block>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </scroll-view>
+
+    <!-- 结算 -->
+    <view class='submit-bar'>
+        <view class='submit-bar__bar justify-between'>
+            <view class='submit-bar__bar-left flex'>
+                <van-checkbox value="{{ isAllChecked }}" checked-color="#f08300" bind:change="allChecked">全选</van-checkbox>
+                <view class='margin-left' wx:if='{{!isEdit}}'>
+                    <text class='text-df text-darkGray'>合计：</text>
+                    <text class='text-df text-price text-orange'>{{totalPrice}}</text>
+                    <text class='text-gray text-xs' style='margin-left: 14rpx;'>不含运费</text>
+                </view>
+            </view>
+            <view class='submit-bar__bar-right'>
+                <button class="cu-btn round bg-{{result.length==0 && isAllChecked==false?'orange2 light':'orange'}} submit-bar-btn" bindtap='{{result.length==0 && isAllChecked==false?"":"settlement"}}' wx:if='{{isEdit==false}}'>去结算<text class="text-xs">（{{totalCount}}件）</text></button>
+                <button class="cu-btn round bg-{{result.length==0 && isAllChecked==false?'orange2 light':'orange'}} submit-bar-btn" bindtap='{{result.length==0 && isAllChecked==false?"":"delete"}}' wx:if='{{isEdit==true}}'>删除</button>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 授权登录 -->
+<auth showOverlay='{{showAuth}}' showLogin='{{showAuth}}'></auth>
+<!-- 加载弹框 -->
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+    <view class='cuIcon-emojifill text-orange'></view>
+    <view class='gray-text'>加载中...</view>
+</view>
+<view class="cu-tabbar-height"></view>

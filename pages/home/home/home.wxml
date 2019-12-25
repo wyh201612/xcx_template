@@ -1,0 +1,224 @@
+<scroll-view scroll-y style="height: calc(100vh - 84rpx);">
+    <view class='swipercontent'>
+        <swiper autoplay="true" circular="true" interval="4000" duration="600" current="{{swiperCurrent}}" bindanimationfinish="swiperChange">
+            <block wx:for="{{banner}}" wx:key="unique">
+                <swiper-item>
+					<image src="{{item.pic_url}}" class="slide-image" mode="aspectFill"></image>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="dots">
+            <block wx:for="{{banner}}" wx:key="unique">
+                <view class="dot {{index == swiperCurrent ? 'active' : ''}}"></view>
+            </block>
+        </view>
+    </view>
+    <van-search field-class='search' value="{{ value }}" background='{{"#fff"}}' input-align='{{"center"}}' left-icon='' use-right-icon-slot shape='{{"round"}}' placeholder="搜索商品" bind:search="onSearch"></van-search>
+    <!-- <van-search field-class='search' value="{{ value }}" background='{{"#fff"}}' input-align='{{"center"}}' left-icon='' use-right-icon-slot shape='{{"round"}}' placeholder="搜索商品" bind:search="onSearch" readonly bindtap='toSearch'></van-search> -->
+    <!-- class-item -->
+    <swiper class='classs-swiper-box' bindchange='classCurrent' wx:if='{{shop_goods_class.length!=0}}'>
+        <swiper-item class='classs-swiper' wx:for="{{shop_goods_class}}" wx:key="index" wx:item="item">
+            <view wx:for="{{item}}" wx:key="index" wx:item="item" class='recordItem'>
+                <view class='name' bindtap='tapClass' data-index='{{index}}' data-class_id='{{item.class_id}}' data-sort_title='{{item.class_name}}'>
+                    <image src='{{item.icon}}' class='class_logo'></image>
+                    <text class='class_name'>{{item.class_name}}</text>
+                </view>
+            </view>
+        </swiper-item>
+    </swiper>
+    <view class="bg-white padding" wx:else>
+        <view class="grid col-5 margin-bottom text-center" wx:for="{{2}}" wx:key>
+            <view wx:for="{{5}}" wx:key>
+                <view class="skeleton-avatar skeleton-avatar--active skeleton-avatar--default skeleton-avatar--circle"></view>
+                <view class="paragraph skeleton-paragraph skeleton-paragraph--active">
+                    <view class="skeleton-paragraph__row"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- class-item 指示灯 -->
+    <view class='indicator'>
+        <text class='indicator-dots {{currentIndex==index?"active":""}}' wx:for="{{shop_goods_class}}" wx:key="index" wx:item="item"></text>
+    </view>
+    <!-- 广告 -->
+    <view class='adNum' wx:if='{{adver.length != 0}}'>
+        <block wx:for='{{adver}}' wx:key>
+            <image src='{{item.pic_url}}' data-adv_id='{{item.adv_id}}' data-url='{{item.url}}' bindtap='bindpic'></image>
+        </block>
+    </view>
+    <view class="bg-white padding-sm" wx:else>
+        <view class="grid col-3 text-center" wx:for="{{1}}" wx:key>
+            <view class="margin-right-xs" wx:for="{{3}}" wx:key>
+                <view class="skeleton-images skeleton-images--active"></view>
+            </view>
+        </view>
+    </view>
+    <!-- 加盟木木生意自然来（广告） -->
+    <view wx:if='{{newbie_guide.length != 0}}' class="padding-top-sm bg-white">
+        <view class='otherad' wx:if='{{newbie_guide.pic_url != ""}}' data-adv_id='{{newbie_guide.adv_id}}' data-url='{{newbie_guide.url}}' bindtap='toOtherad'>
+            <image src="{{newbie_guide.pic_url}}"></image>
+        </view>
+    </view>
+    <view class="bg-white padding-sm" wx:else>
+        <view class="grid col-1 text-center" wx:for="{{1}}" wx:key>
+            <view class="margin-right-xs" wx:for="{{1}}" wx:key>
+                <view class="skeleton-images-df skeleton-images--active"></view>
+            </view>
+        </view>
+    </view>
+	<!-- 同城配送 -->
+    <view wx:if='{{same_city_goods.length != 0}}'>
+        <view class="cu-bar bg-white solid-bottom">
+            <view class='action'>
+                <text class='titles bg-orange'></text>
+                <text class='text-orange text-xl'>同城配送</text>
+            </view>
+            <view class='action text-lg text-gray' data-is_hot="0" data-is_recommend="0" data-is_news="0" data-sort_type='1' data-key_words='' data-same_city='1' data-class_id='0' bindtap="allgoods">
+                <van-icon name="arrow" custom-class='custom-arrow1 custom-arrow' />
+                <van-icon custom-class='custom-arrow' name="arrow" />更多内容
+            </view>
+        </view>
+        <view class="cards">
+            <view class="cu-card case">
+                <block wx:for='{{same_city_goods}}' wx:key>
+                    <view class="cu-item shadow item" bindtap="toDetail" data-goods_id="{{item.goods_id}}">
+                        <view class="image">
+                            <image src="{{item.icon !='' ? item.icon:'../../../images/load.png'}}"></image>
+                        </view>
+                        <view class="cu-list menu-avatar">
+                            <view class="cu-item">
+                                <view class="content">
+                                    <view class="text-black flex flex-row justify-between">
+										<text class="goods-name text-cut" style="max-width: 260rpx;">{{item.goods_name}}</text>
+										<text class="text-gray text-sm">{{item.distance}}</text>
+									</view>
+                                    <view class="text-gray text-sm goods-price">市场价：￥{{item.market_price}}</view>
+                                    <view class="text-orange text-xl flex flex-row justify-between" style="margin-bottom: 12rpx;">
+                                        <text class="text-price">{{item.price}}</text>
+                                        <button class="cu-btn text-sm round lines-orange" style="height: 40rpx;padding: 0 18rpx;">购买</button>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+    <!-- 新品上架 -->
+    <view wx:if='{{new_goods.length != 0}}'>
+        <view class="cu-bar bg-white solid-bottom">
+            <view class='action'>
+                <text class='titles bg-orange'></text>
+                <text class='text-orange text-xl'>新品上架</text>
+            </view>
+            <view class='action text-lg text-gray' data-is_hot="0" data-is_recommend="0" data-is_news="1" data-sort_type='3' data-key_words='' data-same_city='0' data-class_id='0' bindtap="allgoods">
+                <van-icon name="arrow" custom-class='custom-arrow1 custom-arrow' />
+                <van-icon custom-class='custom-arrow' name="arrow" />更多内容
+            </view>
+        </view>
+        <view class="cards">
+            <view class="cu-card case">
+                <block wx:for='{{new_goods}}' wx:key>
+                    <view class="cu-item shadow item" bindtap="toDetail" data-goods_id="{{item.goods_id}}">
+                        <view class="image">
+                            <image src="{{item.icon !='' ? item.icon:'../../../images/load.png'}}"></image>
+                        </view>
+                        <view class="cu-list menu-avatar">
+                            <view class="cu-item">
+                                <view class="content">
+                                    <view class="text-black text-cut">
+										<text class="goods-name text-cut">{{item.goods_name}}</text>
+									</view>
+                                    <view class="text-gray text-sm goods-price">市场价：￥{{item.market_price}}</view>
+                                    <view class="text-orange text-xl flex flex-row justify-between" style="margin-bottom: 12rpx;">
+                                        <text class="text-price">{{item.price}}</text>
+                                        <button class="cu-btn text-sm round lines-orange" style="height: 40rpx;padding: 0 18rpx;">购买</button>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+    <!-- 热销产品 -->
+    <view wx:if='{{hot_goods.length != 0}}'>
+        <view class="cu-bar bg-white solid-bottom">
+            <view class='action'>
+                <text class='titles bg-orange'></text>
+                <text class='text-orange text-xl'>热销产品</text>
+            </view>
+            <view class='action text-lg text-gray' data-is_hot="1" data-is_recommend="0" data-is_news="0" data-sort_type='0' data-key_words='' data-same_city='0' data-class_id='0' bindtap="allgoods">
+                <van-icon name="arrow" custom-class='custom-arrow1 custom-arrow' />
+                <van-icon custom-class='custom-arrow' name="arrow" />更多内容
+            </view>
+        </view>
+        <view class="cards">
+            <view class="cu-card case">
+                <block wx:for='{{hot_goods}}' wx:key>
+                    <view class="cu-item shadow item" bindtap="toDetail" data-goods_id="{{item.goods_id}}">
+                        <view class="image">
+                            <image src="{{item.icon !='' ? item.icon:'../../../images/load.png'}}"></image>
+                        </view>
+                        <view class="cu-list menu-avatar">
+                            <view class="cu-item">
+                                <view class="content">
+                                    <view class="text-black text-cut">
+										<text class="goods-name text-cut">{{item.goods_name}}</text>
+									</view>
+                                    <view class="text-gray text-sm goods-price">市场价：￥{{item.market_price}}</view>
+                                    <view class="text-orange text-xl flex flex-row justify-between" style="margin-bottom: 12rpx;">
+                                        <text class="text-price">{{item.price}}</text>
+                                        <button class="cu-btn text-sm round lines-orange" style="height: 40rpx;padding: 0 18rpx;">购买</button>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+    <!-- 推荐产品 -->
+    <view wx:if='{{recommended_goods.length != 0}}'>
+        <view class="cu-bar bg-white solid-bottom">
+            <view class='action'>
+                <text class='titles bg-orange'></text>
+                <text class='text-orange text-xl'>推荐产品</text>
+            </view>
+            <view class='action text-lg text-gray' data-is_hot="0" data-is_recommend="1" data-is_news="0" data-sort_type='0' data-key_words='' data-same_city='0' data-class_id='0' bindtap="allgoods">
+                <van-icon name="arrow" custom-class='custom-arrow1 custom-arrow' />
+                <van-icon custom-class='custom-arrow' name="arrow" />更多内容
+            </view>
+        </view>
+        <view class="cards">
+            <view class="cu-card case">
+                <block wx:for='{{recommended_goods}}' wx:key>
+                    <view class="cu-item shadow item" bindtap="toDetail" data-goods_id="{{item.goods_id}}">
+                        <view class="image">
+                            <image src="{{item.icon !='' ? item.icon:'../../../images/load.png'}}"></image>
+                        </view>
+                        <view class="cu-list menu-avatar">
+                            <view class="cu-item">
+                                <view class="content">
+                                    <view class="text-black goods-name">
+										<text class="goods-name text-cut">{{item.goods_name}}</text>
+									</view>
+                                    <view class="text-gray text-sm goods-price">市场价：￥{{item.market_price}}</view>
+                                    <view class="text-orange text-xl flex flex-row justify-between" style="margin-bottom: 12rpx;">
+                                        <text class="text-price">{{item.price}}</text>
+                                        <button class="cu-btn text-sm round lines-orange" style="height: 40rpx;padding: 0 18rpx;">购买</button>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+</scroll-view>
+<image class="suspension" src="../../../images/suspension.png" bindtap="toMuMuHome"></image>
+<view class='cu-tabbar-height'></view>

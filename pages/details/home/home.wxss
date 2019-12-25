@@ -1,0 +1,384 @@
+/* 轮播图--------- */
+
+.swipercontent {
+    position: relative;
+}
+
+swiper {
+    width: 100%;
+    height: 750rpx;
+}
+
+swiper image {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.swipercontent .dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20rpx;
+    display: flex;
+    justify-content: center;
+}
+
+.swipercontent .dot {
+    margin: 0 8rpx;
+    width: 10rpx;
+    height: 10rpx;
+    background: #fff;
+    opacity: 0.4;
+    border-radius: 20rpx;
+    transition: all 0.6s;
+}
+
+.swipercontent .dot.active {
+    opacity: 1;
+    width: 20rpx;
+}
+
+/* 轮播图---------end */
+
+.cu-custom .cu-bar .content {
+    pointer-events: initial;
+}
+
+.title {
+    padding-bottom: 6rpx;
+    margin: 0 40rpx;
+    font-weight: initial;
+}
+
+.title-active {
+    border-bottom: 4rpx solid;
+}
+
+.share-btn {
+    padding: 0;
+    background-color: transparent;
+}
+
+.share-btn::after {
+    border: 0;
+}
+
+.tankuang2 .close {
+    position: absolute;
+    top: 24rpx;
+    right: 20rpx;
+    z-index: 1000;
+}
+
+/* 弹框 */
+
+.overlay {
+    z-index: 10000;
+}
+
+.showOfflineStore {
+    width: 100%;
+    z-index: 10001;
+    position: fixed;
+    bottom: -100vh;
+    left: 0;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+.showOfflineStore image {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.showOfflineStore .offlineStoreBtn {
+    padding: 26rpx 0;
+}
+
+/* 分享弹框 */
+
+.share-box {
+    width: 100%;
+    z-index: 10001;
+    position: fixed;
+    bottom: -1000rpx;
+    left: 0;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+.share-box .cu-item button {
+    display: block;
+    height: 130rpx;
+}
+
+.share-box .cu-item image {
+    width: 80rpx;
+    height: 80rpx;
+    border: 1rpx solid #f0f0f0;
+    border-radius: 100%;
+    padding: 8rpx;
+}
+
+/* 商品类型 */
+
+.goodsType {
+    width: 100%;
+    z-index: 10001;
+    position: fixed;
+    bottom: -100vh;
+    left: 0;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+.goodsType image {
+    width: 166rpx;
+    height: 166rpx;
+}
+
+.goodsType .goodsTypeBtn {
+    padding: 26rpx 0;
+}
+
+.goodsType .goodsType-top {
+    position: relative;
+    padding: 0 0 10rpx;
+    margin: 0 32rpx;
+    border-bottom: 2rpx solid #e4e4e4;
+}
+
+.goodsType .close {
+    position: absolute;
+    top: 14rpx;
+    right: -14rpx;
+}
+
+.goodsType .goodsType-check-box {
+    margin: 0 32rpx;
+}
+
+.goodsType-item {
+    margin-bottom: 20rpx;
+}
+
+.goodsType .goodsType-check-box .goodsType-title {
+    margin: 34rpx 0 0 0;
+}
+
+.goodsType .item {
+    height: auto;
+    padding: 14rpx 20rpx;
+    margin-right: 18rpx;
+    margin-top: 16rpx;
+}
+
+.goodsType .surplus {
+    margin: 0 32rpx;
+    padding: 26rpx 0;
+}
+
+.details-msg {
+    padding: 24rpx 26rpx 34rpx 26rpx;
+}
+
+.historicalExemption {
+    padding: 44rpx 26rpx 0 26rpx;
+    background: #f9f9f9;
+}
+
+.historicalExemption-box {
+}
+
+.historicalExemption .leftIcon-box {
+    width: 124rpx;
+    height: 142rpx;
+    margin-right: 10rpx;
+    margin-top: 18rpx;
+}
+
+.historicalExemption .leftIcon-box .leftIcon {
+    width: 124rpx;
+    height: 142rpx;
+}
+
+.historicalExemption .rightContent {
+    color: #727171;
+}
+
+.historicalExemption .rightContent .rightContent-title {
+}
+
+.historicalExemption .rightContent .rightContent-title .advert {
+    width: 34rpx;
+    height: 34rpx;
+    margin-right: 12rpx;
+}
+
+.historicalExemption .rightContent .rightContent-title text {
+    font-size: 28rpx;
+}
+
+.historicalExemption .rightContent .items {
+    margin: 10rpx 0;
+}
+
+.historicalExemption .rightContent .items .avatar {
+    width: 34rpx;
+    height: 34rpx;
+    vertical-align: middle;
+    margin-right: 12rpx;
+    border-radius: 100rpx;
+}
+
+.historicalExemption .rightContent .items .name {
+    width: 78rpx;
+}
+
+.historicalExemption .rightContent .items .title1 {
+    width: 118rpx;
+}
+
+.historicalExemption .rightContent .items .title2 {
+    display: inline-block;
+}
+
+.historicalExemption .rightContent .items .title2 text {
+    margin: 0 8rpx;
+}
+
+.historicalExemption-footer {
+    margin-right: 12rpx;
+}
+
+.historicalExemption-footer, .jackpotInfo-footer {
+    overflow: hidden;
+    padding-bottom: 20rpx;
+    padding-top: 10rpx;
+}
+
+.historicalExemption-footer .lookAll, .jackpotInfo-footer .lookAll {
+    font-weight: 400;
+    float: right;
+}
+
+.historicalExemption-footer .total, .jackpotInfo-footer .total {
+    font-weight: 400;
+    color: #999;
+}
+
+.nav .cu-item {
+    margin: 0 106rpx !important;
+}
+
+.jackpotInfo {
+}
+
+.jackpotInfo .jackpotInfo-tip {
+    color: #727171;
+    font-size: 22rpx;
+    margin-bottom: 22rpx;
+}
+
+.jackpotInfo .jackpotInfo-item {
+    color: #727171;
+    font-size: 24rpx;
+    margin-bottom: 22rpx;
+}
+
+.jackpotInfo .jackpotInfo-tip .moneyIndex {
+    width: 34rpx;
+    height: 34rpx;
+    vertical-align: middle;
+    margin-right: 12rpx;
+}
+
+.jackpotInfo .jackpotInfo-tip .dot {
+    color: #727171;
+    margin-right: 12rpx;
+}
+
+.jackpotInfo .jackpotInfo-tip .dot:last-of-type {
+    margin-right: 0;
+}
+
+.jackpotInfo .jackpotInfo-item .avatar {
+    width: 34rpx;
+    height: 34rpx;
+    vertical-align: middle;
+    margin-right: 12rpx;
+    border-radius: 100rpx;
+}
+
+.jackpotInfo .jackpotInfo-item .name {
+    width: 130rpx;
+    margin-right: 30rpx;
+}
+
+.jackpotInfo-footer {
+}
+
+.action-button {
+    height: 100rpx !important;
+}
+
+.action-button.addCar {
+    background: #ef9318 !important;
+}
+
+.details-imgs {
+}
+
+.details .details-imgs .wxParse-p image {
+}
+
+.footers {
+    padding: 162rpx 0 152rpx 0;
+}
+
+.footers .mumu-icon {
+    position: relative;
+    width: 148rpx;
+    height: 112rpx;
+    margin: 0 auto 18rpx;
+}
+
+.footers .mumu-icon image {
+    width: 100%;
+    height: 100%;
+}
+
+.share {
+    position: fixed;
+    right: 0;
+    bottom: 200rpx;
+    width: 80rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 8rpx 0 0 8rpx;
+}
+
+.share image {
+    width: 52rpx;
+    height: 52rpx;
+    vertical-align: middle;
+}
+
+.tankuang2 {
+    height: 100%;
+    width: 100%;
+    z-index: 999999;
+    position: fixed;
+    right: 0;
+    transition: all 0.6s;
+}
+
+.tankuang2 .container1 {
+    position: relative;
+    height: 68%;
+    width: 100%;
+    background-color: #fff;
+}

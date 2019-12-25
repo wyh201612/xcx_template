@@ -1,0 +1,31 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/home/home/home",
+        "pages/mall/home/home",
+        "pages/car/home/home",
+        "pages/order/home/home"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#ef9318",
+        "navigationBarTitleText": "木木商城",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "black"
+    },
+	"permission": {
+		"scope.userInfo": {
+			"desc": "获取授权"
+		},
+		"scope.camera": {
+			"desc": "获取照片"
+		},
+		"scope.userLocation": {
+			"desc": "你的位置信息将用于小程序位置"
+		}
+	},
+	"navigateToMiniProgramAppIdList": [],
+    "usingComponents": {
+        "cu-custom": "/colorui/components/cu-custom"
+    },
+    "sitemapLocation": "sitemap.json"
+}

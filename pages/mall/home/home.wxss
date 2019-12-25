@@ -1,0 +1,171 @@
+/* 没有订单 */
+
+.no-goods-box {
+}
+
+.no-goods-box .no-goods-icon {
+    width: 316rpx;
+    height: 316rpx;
+    margin: 134rpx auto 38rpx;
+}
+
+.no-goods-box .no-goods-icon image {
+    width: 100%;
+    height: 100%;
+}
+
+.no-goods-box .look {
+    width: 118rpx;
+    padding: 0;
+    height: 42rpx;
+    margin: 42rpx auto;
+    font-size: 24rpx;
+}
+
+.no-goods-box .look[class*="line"]::after {
+    border-radius: 100rpx;
+}
+
+.no-goods-box .no-goods-title {
+    text-align: center;
+}
+
+/* 有数据 */
+
+.VerticalNav.nav {
+    width: 176rpx;
+    white-space: initial;
+    background-color: #f1f1f1;
+}
+
+.VerticalNav.nav .cu-item {
+    width: 100%;
+    background-color: #f1f1f1;
+    margin: 0;
+    border: none;
+    height: 100rpx;
+    line-height: 100rpx;
+    position: relative;
+	padding: 0;
+}
+
+.VerticalNav.nav .cu-item.cur {
+    background-color: #fff;
+	font-weight: 600;
+}
+
+.VerticalNav.nav .cu-item.cur::after {
+    content: "";
+    width: 8rpx;
+    height: 30rpx;
+    border-radius: 10rpx 0 0 10rpx;
+    position: absolute;
+    background-color: currentColor;
+    top: 0;
+    right: 0rpx;
+    bottom: 0;
+    margin: auto;
+}
+
+.VerticalBox {
+    display: flex;
+    background: #fff;
+}
+
+.VerticalMain {
+    background-color: #fff;
+}
+
+.VerticalMain .cu-bar {
+    min-height: 100rpx;
+}
+
+.cu-custom {
+    z-index: 10002;
+}
+
+.cu-custom .cu-bar .content {
+    width: calc(100% - 40rpx);
+    padding-right: 190rpx;
+    pointer-events: initial;
+}
+
+.content .cu-bar {
+    padding: 0;
+}
+
+.content .cu-bar .search-form {
+    height: 60rpx;
+    line-height: 60rpx;
+    margin: 0;
+}
+
+.content .cu-bar .search-form input {
+    height: 60rpx;
+    line-height: 60rpx;
+    z-index: 999999;
+    padding-left: 30rpx;
+    padding-right: 0;
+    text-align: left;
+}
+
+.content .cu-bar .search-form .cuIcon-search {
+    margin: 0 1em 0 0.8em;
+    font-size: 32rpx !important;
+    font-weight: 600;
+}
+
+.cards {
+}
+
+.cards .item {
+    float: left;
+    margin-top: 16rpx !important;
+}
+
+.cards .item:nth-child(2n+1) {
+    width: 248rpx;
+    margin-left: 0 !important;
+    margin-right: 9rpx !important;
+    margin-bottom: 0 !important;
+}
+
+.cards .item:nth-child(2n) {
+    width: 248rpx;
+    margin-left: 9rpx !important;
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.cards .cu-card.case .image {
+    width: 100%;
+    height: 248rpx;
+}
+
+.cards .cu-card.case .image image {
+    width: 100%;
+    height: 100%;
+}
+
+.cards .cu-list.menu-avatar>.cu-item {
+    height: auto !important;
+    justify-content: flex-start;
+    padding-left: 10rpx;
+}
+
+.cards .cu-list.menu-avatar>.cu-item .content {
+    position: relative !important;
+    left: 0 !important;
+    width: 100% !important;
+}
+
+.cards .cu-list.menu-avatar>.cu-item .content .car {
+    width: 42rpx;
+    height: 44rpx;
+}
+
+.cards .goods-name {
+	display: inherit !important;
+    font-size: 28rpx !important;
+    margin: 8rpx 0;
+}

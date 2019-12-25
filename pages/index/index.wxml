@@ -1,0 +1,46 @@
+<home wx:if="{{PageCur=='home'}}"></home>
+<mall sort_type='{{sort_type}}' wx:if="{{PageCur=='mall'}}"></mall>
+<car wx:if="{{PageCur=='car'}}"></car>
+<order wx:if="{{PageCur=='order'}}"></order>
+
+<view class="cu-bar tabbar bg-white shadow foot">
+    <view class="action {{PageCur=='home'?'text-orange':'text-gray'}}" bindtap="NavChange" data-cur="home">
+        <view class="cuIcon-{{PageCur=='home'?'homefill':'home'}}"></view>
+		木木福利
+    </view>
+    <view class="action {{PageCur=='mall'?'text-orange':'text-gray'}}" bindtap="NavChange" data-cur="mall">
+        <view class="cuIcon-{{PageCur=='mall'?'circlefill':'circle'}}"></view>
+		分类/商品
+    </view>
+    <view class="action {{PageCur=='car'?'text-orange':'text-gray'}}" bindtap="NavChange" data-cur="car">
+        <view class="cuIcon-{{PageCur=='car'?'cartfill':'cart'}}"></view>
+        购物车
+    </view>
+    <view class="action {{PageCur=='order'?'text-orange':'text-gray'}}" bindtap="NavChange" data-cur="order">
+        <view class="cuIcon-{{PageCur=='order'?'myfill':'my'}}"></view>
+        我的
+    </view>
+</view>
+
+<!-- <view class="cu-bar tabbar bg-white shadow foot">
+    <view class="action" bindtap="NavChange" data-cur="home">
+        <view class='icon-cu-image'>
+            <image src="/images/tabbar/home{{PageCur=='home'?'_cur':''}}.png"></image>
+        </view>
+    </view>
+    <view class="action" bindtap="NavChange" data-cur="mall">
+        <view class='icon-cu-image'>
+            <image src="/images/tabbar/mall{{PageCur=='mall'?'_cur':''}}.png"></image>
+        </view>
+    </view>
+    <view class="action" bindtap="NavChange" data-cur="car">
+        <view class='icon-cu-image'>
+            <image src="/images/tabbar/car{{PageCur=='car'?'_cur':''}}.png"></image>
+        </view>
+    </view>
+    <view class="action" bindtap="NavChange" data-cur="order">
+        <view class='icon-cu-image'>
+            <image src="/images/tabbar/order{{PageCur=='order'?'_cur':''}}.png"></image>
+        </view>
+    </view>
+</view> -->

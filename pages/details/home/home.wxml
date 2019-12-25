@@ -1,0 +1,315 @@
+<scroll-view scroll-y style="height: calc(100vh - 100rpx);" scroll-with-animation scroll-into-view="main-{{MainCur}}" bindscroll='VerticalMain'>
+    <cu-custom bgColor="{{bg?'bg-white shadow':'text-white'}}" isCustom="{{true}}">
+        <view slot="content" wx:if='{{bg}}'>
+            <block wx:for="{{title}}" wx:key data-id="{{index}}">
+                <text class="title {{index==HeaderTabCur?'title-active text-orange':'text-darkGray'}}" bindtap='tabHeaderSelect' data-id="{{index}}">{{item.name}}</text>
+            </block>
+        </view>
+    </cu-custom>
+    <view class="details-centent">
+        <!-- banner -->
+        <view id="main-0">
+            <view class='swipercontent' style='margin-top: -{{CustomBar}}px;'>
+                <swiper autoplay="true" circular="true" interval="4000" duration="600" current="{{swiperCurrent}}" bindanimationfinish="swiperChange">
+                    <block wx:for="{{goods_detail.banner}}" wx:key="unique">
+                        <swiper-item>
+                            <image src="{{item.pic}}" class="slide-image" mode="aspectFill"></image>
+                        </swiper-item>
+                    </block>
+                </swiper>
+                <view class="dots">
+                    <block wx:for="{{goods_detail.banner}}" wx:key="unique">
+                        <view class="dot {{index == swiperCurrent ? 'active' : ''}}"></view>
+                    </block>
+                </view>
+            </view>
+            <view class="details-msg flex flex-direction bg-white">
+                <view class="flex flex-row justify-between">
+                    <view class="flex-sub flex flex-direction">
+                        <text class="text-lg text-black" wx:if='{{goods_detail.goods_name != ""}}'>{{goods_detail.goods_name}}</text>
+                        <view class="text-gray text-sm" style="margin-top: 10rpx;">
+                            <text>市场价：</text>
+                            <text class="text-price" wx:if='{{goods_detail.price != ""}}'> {{goods_detail.market_price}}</text>
+                        </view>
+                        <text class="text-orange text-xl text-price" style="margin-top: 18rpx;" wx:if='{{goods_detail.market_price != ""}}'> {{goods_detail.price}}</text>
+                    </view>
+                </view>
+                <view class="flex flex-row align-center" style="margin-top: 22rpx;background: #E60044;border-radius: 8rpx;padding: 16rpx 20rpx;">
+                    <text class="text-white text-xsm">消费满</text>
+                    <text class="text-yellow text-lg"> 100 </text>
+                    <text class="text-white text-xsm">元，支付立享优惠，二十分之一机会获最低</text>
+                    <text class="text-yellow text-lg"> 免单 </text>
+                    <text class="text-white text-xsm">金额</text>
+                </view>
+                <view class="flex flex-row align-center justify-between" style="margin-top: 32rpx;">
+                    <text class="text-gray text-xsm">运费：含运费</text>
+                    <view>
+                        <text class="text-gray text-sm">剩余：</text>
+                        <text class="text-orange text-sm">{{goods_detail.stock_num}}</text>
+                    </view>
+                    <text class="text-gray text-sm">销量：{{goods_detail.sales_num}}</text>
+                </view>
+            </view>
+            <!-- 历史免单名单 -->
+            <view class='historicalExemption flex flex-direction'>
+                <view class='historicalExemption-box flex flex-row'>
+                    <view class='leftIcon-box'>
+                        <image src='../../../images/exemption.png' class='leftIcon'></image>
+                    </view>
+                    <view class='rightContent flex-sub text-xs'>
+                        <view class='rightContent-title flex flex-row align-center'>
+                            <image src='../../../images/advert.png' class='advert'></image>
+                            <text class="text-orange">历史免单名单</text>
+                        </view>
+                        <block wx:for='{{history_win}}' wx:key='index'>
+                            <view class='items flex flex-row align-center'>
+                                <image src='{{item.icon}}' class='avatar'></image>
+                                <text class='name text-cut'>{{item.nickname}}</text>
+                                <text class='title1 text-cut'>喜得馋嘴操作馋嘴操作</text>
+                                <view class='flex-sub'>
+                                    <text class='title2 flex-sub'>满</text>
+                                    <text class="text-orange">{{item.meet_amount}}</text>
+                                    <text>元活动第 {{item.activity_period}} 期免单金额</text>
+                                    <text class="text-orange">{{item.goods_price}}</text>
+                                    <text>元</text>
+                                </view>
+                            </view>
+                        </block>
+                        <view class='historicalExemption-footer text-sm' wx:if='{{history_win.length>0}}'>
+                            <text class='lookAll text-orange' bindtap='binghistor'>查看全部</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="flex nav text-center bg-white" style="margin-top: 10rpx;">
+                <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}} text-lg" wx:for="{{['活动总览','奖池贡献']}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+                    {{item}}
+                </view>
+            </view>
+            <!-- 活动总览 -->
+            <view wx-if='{{TabCur==0}}' style="padding-left: 28rpx; padding-right: 28rpx;padding-top: 26rpx;" class="bg-white">
+                <view class='jackpotInfo flex flex-direction'>
+                    <block wx:for='{{merchants_activity}}' wx:key='index'>
+                        <view class='jackpotInfo-tip flex justify-between'>
+                            <image src='../../../images/moneyIndex.png' class='moneyIndex'></image>
+                            <text class='dot'>消费满 <text class='text-orange'>{{item.meet_amount}}</text> 元</text>
+                            <text class='dot'>奖池 <text class='text-orange'>{{item.lows_bonus}}</text> 元</text>
+                            <text class='dot'>所需人数 <text class='text-orange'>{{item.lottery_num}}</text> 人</text>
+                            <text class='dot'>已参与 <text class='text-orange'>{{item.join_num}}</text> 人</text>
+                        </view>
+                    </block>
+                </view>
+                <view class='jackpotInfo-footer' wx:if='{{merchants_activity.length>0}}'>
+                    <text class='lookAll text-orange' bindtap='bingConsumeActivitys'>查看全部</text>
+                </view>
+            </view>
+            <!-- 奖池贡献 -->
+            <view wx-if='{{TabCur==1}}' style="padding-left: 28rpx; padding-right: 28rpx;padding-top: 26rpx;" class="bg-white">
+                <view class='jackpotInfo flex flex-direction' wx:if='{{activity_signup.length>0}}'>
+                    <block wx:for='{{activity_signup}}' wx:key='index'>
+                        <view class='jackpotInfo-item flex flex-row align-center'>
+                            <image src='{{item.icon}}' class='avatar'></image>
+                            <text class='name text-cut'>{{item.nickname}}</text>
+                            <view class="flex-sub">
+                                <text>为满</text>
+                                <text class='text-orange'> {{item.meet_amount}} </text>
+                                <text>元活动免单金额贡献</text>
+                                <text class='text-orange'> {{item.money}} </text>
+                                <text>元</text>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+                <view class='jackpotInfo-footer' wx:if='{{activity_signup.length>0}}'>
+                    <text class='lookAll text-orange' bindtap='bingJackpot'>查看全部</text>
+                </view>
+            </view>
+            <!-- 线下门店 -->
+            <view style="margin-top: 10rpx;" class="offlineStore">
+                <van-cell title="线下门店" title-class='text-df text-black' is-link bind:click='showOfflineStore' />
+                <view class="flex flex-row align-center text-darkGray bg-white text-sm" style="padding:0 15px 15px 15px;">
+                    <view class="flex flex-row align-center margin-right-lg">
+                        <van-icon name="passed" custom-class='vertical-align margin-right-xs ' /> 商品认证
+                    </view>
+                    <view class="flex flex-row align-center margin-right-lg">
+                        <van-icon name="passed" custom-class='vertical-align margin-right-xs ' /> 收货后结算
+                    </view>
+                    <view class="flex flex-row align-center margin-right-lg">
+                        <van-icon name="passed" custom-class='vertical-align margin-right-xs ' /> 门店地址
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 商品详情 -->
+        <view id="main-1" style="overflow: hidden;">
+            <view style="margin-top: 10rpx;" class="details">
+                <van-cell title="商品详情" />
+				<view class="details-imgs padding-xs flex flex-direction bg-white">
+					<import src="../../../utils/wxParse/wxParse.wxml"/>
+					<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+				</view>
+            </view>
+            <view class='footers'>
+                <view class='mumu-icon'>
+                    <image src='../../../images/mumu-icon.png'></image>
+                </view>
+                <view class='text-center text-xs text-darkGray'>木木福利提供技术支持</view>
+            </view>
+        </view>
+    </view>
+</scroll-view>
+
+<!-- 商品导航 -->
+<view class="goods-action shadow bg-white solid-top" style="height: 100rpx;">
+    <van-goods-action class='goods-actions'>
+        <van-goods-action-icon icon="{{goods_detail.is_collect==1?'star':'star-o'}}" text="收藏" icon-class="{{goods_detail.is_collect==1?'text-orange':''}}" bind:click='add_shopgoodscollect'/>
+        <!-- <van-goods-action-icon icon="chat-o" text="客服" /> -->
+        <van-goods-action-icon icon="cart-o" text="购物车" bindtap="toCar" />
+        <!-- <van-goods-action-icon icon="cart-o" text="购物车" info="5" bindtap="toCar" /> -->
+        <van-goods-action-icon icon="shop-o" text="木木商城" bind:click='mall' />
+        <van-goods-action-button custom-class='action-button addCar' data-type="1" text="加入购物车" type="warning" bind:click='showGoodsType' wx:if='{{goods_detail.is_same_city==0}}' />
+        <van-goods-action-button custom-class='action-button' data-type="2" text="立即支付" bind:click='showGoodsType' />
+    </van-goods-action>
+</view>
+<!-- 授权 -->
+<auth showOverlay='{{showAuth}}' showLogin='{{showAuth}}'></auth>
+<!-- 遮罩层 -->
+<van-overlay show="{{ showOverlay }}" custom-style='z-index: 10000;' bind:click="dialogHide" />
+<!-- 线下门店弹框 -->
+<view class="showOfflineStore flex flex-direction" style="bottom: {{showOfflineStore?0:'-'+offlineStoreHeight}}px;">
+    <view style="padding: 28rpx 18rpx 0 16rpx;">
+        <view class="flex flex-row" style="margin-bottom: 36rpx;">
+            <view style="margin-right: 20rpx;">
+                <image src="../../../images/gou1.png"></image>
+            </view>
+            <view class="flex flex-direction">
+                <view class="text-black text-lg" style="margin-bottom: 20rpx;">商品认证</view>
+                <view class="text-darkGray text-xsm">该商品已通过木木平台实体商铺认证，请放心购买</view>
+            </view>
+        </view>
+        <view class="flex flex-row" style="margin-bottom: 36rpx;">
+            <view style="margin-right: 20rpx;">
+                <image src="../../../images/gou1.png"></image>
+            </view>
+            <view class="flex flex-direction">
+                <view class="text-black text-lg" style="margin-bottom: 20rpx;">收货后结算</view>
+                <view class="text-darkGray text-xsm" style="line-height: 38rpx;">该店铺交易由木木提供奖金担保服务，在买家确认收货后，资 金才会结算给商家。或自商家确认发货后，在双方约定的自动 确认收货日期到期后，资金才会结算给商家。</view>
+            </view>
+        </view>
+        <view class="flex flex-row" style="margin-bottom: 36rpx;">
+            <view style="margin-right: 20rpx;">
+                <image src="../../../images/gou1.png"></image>
+            </view>
+            <view class="flex flex-direction">
+                <view class="text-black text-lg" style="margin-bottom: 20rpx;">线下门店</view>
+                <view class="text-darkGray text-xsm" style="line-height: 38rpx;">
+                    <view>门店：{{merchants.merchants_name}}</view>
+                    <view>地址：{{merchants.address}}</view>
+                    <view data-ph='{{merchants.phone}}' catchtap='callPhone'>电话：
+                        <text class="text-blue">{{merchants.phone}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="offlineStoreBtn text-center text-xl bg-orange" bindtap="dialogHide">确定</view>
+</view>
+
+<!-- 选择商品弹框 -->
+<view class="goodsType flex flex-direction" style="bottom: {{showGoodsType?0:'calc(-'+goodsTypeHeight+'px'+' - 32rpx)'}};">
+    <view class="goodsType-top">
+        <view class="flex flex-row">
+            <view style="margin-right: 20rpx;margin-top: -32rpx;">
+                <image src="{{sku.icon}}" mode="scaleToFill"></image>
+            </view>
+            <view class="flex flex-direction" style="margin-right: 30rpx;">
+                <view class="text-darkGray text-df margin-tb-xs">{{sku.goods_name}}</view>
+                <view class="text-orange text-df text-price">{{sku_price}}</view>
+                <view class="text-gray text-sm margin-tb-xs">
+                    <block wx:if='{{sku_name.length==0 && sku.sku_data.length>0}}'>
+                        <text>请选择</text>
+                    </block>
+                    <block wx:if='{{sku_name.length!=0 && sku.sku_data.length>0}}'>
+                        已选择
+                        <block wx:for='{{sku_name}}' wx:key>
+                            <text class="margin-right-xs">{{item}}</text>
+                        </block>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <van-icon name="close" size='22px' color='#aaa' custom-class='close' bind:click="dialogHide" />
+    </view>
+	<scroll-view scroll-y style="max-height: 500rpx;">
+		<view class="goodsType-check-box">
+			<block wx:for='{{sku.sku_data}}' wx:key wx:for-item="item1" wx:for-index="index1">
+				<view class="goodsType-item">
+					<view class="goodsType-title text-df text-black">{{item1.skuKey}}</view>
+					<view class="goodsType-checkeds">
+						<block wx:for="{{item1.skuValue}}" wx:key wx:for-item="item2" wx:for-index="index2">
+							<view class="item text-sm cu-btn {{item2.checked?'text-orange line-orange':'text-gray line-gray'}}" data-sku_value='{{item2.value}}' data-sku_key='{{item1.skuKey}}' data-index='{{index1}}' bindtap='get_sku_info'>{{item2.value}}</view>
+						</block>
+					</view>
+				</view>
+			</block>
+		</view>
+	</scroll-view>
+    <view class="surplus flex flex-row justify-between">
+        <view class="surplus-num flex flex-direction">
+            <text class="text-black text-df">购买数量：</text>
+            <text class="text-gray text-sm">剩余{{sku_num}}件</text>
+        </view>
+        <view class='stepper flex align-center'>
+			<van-stepper value="{{num}}" min="1" max="{{sku_num}}" integer bind:minus='bindMinus' bind:plus='bindPlus' bind:blur='bindNumberInput' />
+        </view>
+    </view>
+    <view class="goodsTypeBtn text-center text-xl bg-red" bindtap="submission">确定</view>
+</view>
+<!-- 海报 -->
+<view class='tankuang2 flex align-end justify-center' style="bottom: {{showhaibao?0:'-'+windowH+'px'}};">
+    <view class='container1'>
+		<view class="padding-lr-sm bg-gray" style="height: 84rpx;line-height: 84rpx;">
+			<text class="text-black text-df">保存到相册</text>
+			<van-icon name="close" size='22px' color='#aaa' custom-class='close' catchtap="dialogHidehaibao" />
+		</view>
+		<view class="text-center padding-tb-sm" style="height: calc(100% - 84rpx - 198rpx);">
+			<image class="bg-white radius shadow" style="width:50%;height: 100%;" src="{{shareImg}}" bindtap="previewImg" ></image>
+		</view>
+		<view class="padding flex flex-direction">
+			<button class="cu-btn bg-red margin-bottom-sm lg" bindtap="saveImg">保存图片</button>
+			<view class="text-center text-sm text-darkGray">保存图片到时间相册后，将图片分享到您的圈子</view>
+		</view>
+    </view>
+</view>
+<canvas style="width:{{windowW}}px;height:{{windowH}}px;display:{{maskHidden?'none':''}}" canvas-id="mycanvas" />
+<!-- 分享弹框 -->
+<view class="share-box" style="bottom: {{showShare?0:'calc(-'+shareHeight+'px)'}};">
+	<view class="cu-bar bg-gray solid-bottom">
+        <view class="action">分享</view>
+        <view class="action">
+			<van-icon name="close" size='22px' color='#aaa' custom-class='close' bind:click="dialogHide" />
+        </view>
+    </view>
+	<view class="cu-list grid col-2 no-border">
+        <view class="cu-item">
+			<button data-goods_id='{{goods_detail.goods_id}}' open-type="share" hover-class='none' class="cu-btn bg-transparent">
+				<view class="">
+                	<image src="../../../images/share-icon2.png"></image>
+				</view>
+				<text>分享给好友</text>
+			</button>
+        </view>
+		<view class="cu-item">
+			<button bindtap="shareFrends" hover-class='none' class="cu-btn bg-transparent">
+				<view class="">
+                	<image src="../../../images/share-icon1.png"></image>
+				</view>
+				<text>生成分享海报</text>
+			</button>
+        </view>
+    </view>
+</view>
+
+<view class="share" bindtap="showShare">
+	<image src="../../../images/share.png"></image>
+</view>

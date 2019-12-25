@@ -1,0 +1,9 @@
+{
+	"usingComponents": {
+		"home": "/pages/home/home/home",
+		"mall": "/pages/mall/home/home",
+		"car": "/pages/car/home/home",
+		"order": "/pages/order/home/home",
+		"van-icon": "../../../miniprogram_npm/vant-weapp/icon/index"
+	}
+}
